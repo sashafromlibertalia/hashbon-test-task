@@ -1,0 +1,56 @@
+{
+  "name": "hashbon-test-task",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Alexander Miroshnichenko",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "eslint:fix": "yarn eslint --fix",
+    "stylelint": "stylelint '**/*.scss'",
+    "stylelint:fix": "yarn stylelint --fix",
+    "cs:fix": "yarn eslint:fix && yarn stylelint:fix",
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">=18",
+    "yarn": "^1.22"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
+    ]
+  },
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@builtbysasha/eslint-config": "^1.1.1",
+    "@builtbysasha/stylelint": "^1.1.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "husky": "^8.0.0",
+    "stylelint": "^15.10.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-tsconfig-paths": "^4.2.0"
+  }
+}
