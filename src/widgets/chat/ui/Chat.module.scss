@@ -1,0 +1,23 @@
+@use "src/shared/ui/kit";
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    padding: 1rem;
+    background: kit.$colors-background;
+    border-radius: kit.$base-radius;
+    box-shadow: kit.$base-shadow;
+    overflow: auto;
+    gap: 1rem;
+  }
+
+  &__caption {
+    text-align: center;
+  }
+}

@@ -1,0 +1,54 @@
+@use "src/shared/ui/kit";
+
+.message {
+  max-width: 400px;
+  padding: .75rem 1.25rem;
+  border-radius: 28px;
+  word-wrap: break-word;
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: kit.$radius-round;
+
+    &_bot {
+      background: kit.$colors-primary;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &_self {
+      color: #065EBC;
+      background: #D3E4FD;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: .5rem;
+
+    &_bot {
+      flex-direction: row;
+    }
+
+    &_self {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__self {
+    color: kit.$colors-background;
+    background: kit.$colors-primary;
+  }
+
+  &__bot {
+    color: black;
+    background: kit.$colors-secondary;
+  }
+}

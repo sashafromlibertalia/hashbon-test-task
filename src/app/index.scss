@@ -1,6 +1,6 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 *, *::before, *::after {
@@ -16,6 +16,10 @@ html {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  min-height: 100vh;
 }
 
 a {

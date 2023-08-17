@@ -1,10 +1,11 @@
 import "./index.scss";
-import { TextInput } from "~/entities/message";
+import { ChatWidget } from "~/widgets/chat";
+import s from "../pages/root/RootPage.module.scss";
 
 const App = () => {
   return (
-    <main>
-      <TextInput />
+    <main className={s.preview}>
+      <ChatWidget />
     </main>
   );
 };

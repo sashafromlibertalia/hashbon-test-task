@@ -1,3 +1,8 @@
 $colors-background: white;
 $colors-primary: #007AFE;
-$colors-secondary: rgba(34, 118, 245, 0.20);
+$colors-primary-hover: #1c52ba;
+$colors-secondary: rgb(34 118 245 / 20%);
+$base-transition: 220ms all cubic-bezier(.4, 0, .2, 1);
+$base-radius: 16px;
+$radius-round: 99999px;
+$base-shadow: 0 2px 31px 13px rgb(10 63 142 / 8%);
