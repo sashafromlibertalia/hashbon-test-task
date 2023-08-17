@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import s from "./MessageItem.module.scss";
 import { clsx } from "clsx";
 
@@ -16,18 +16,28 @@ export const MessageItem: FC<Props> = (props) => {
     text,
   } = props;
 
+  const [animatedText, setAnimatedText] = useState(author === "bot" ? "" : text);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (author !== "bot") return;
+
+    if (currentIndex < text.length) {
+      const typeWritingFunc = setTimeout(() => {
+        setAnimatedText(p => p + text[currentIndex]);
+        setCurrentIndex(p => p + 1);
+      }, 20);
+
+      return () => clearInterval(typeWritingFunc);
+    }
+  }, [text, currentIndex]);
+
   if (!text)
     return null;
 
   return (
-    <div className={clsx(
-      s.message__wrapper,
-      s?.[`message__wrapper_${author}`],
-    )}>
-      <span className={clsx(
-        s.message__avatar,
-        s?.[`message__avatar_${author}`],
-      )}>
+    <div className={clsx(s.message__wrapper, s?.[`message__wrapper_${author}`])}>
+      <span className={clsx(s.message__avatar, s?.[`message__avatar_${author}`])}>
         {
           author === "self" && "Я"
         }
@@ -38,11 +48,8 @@ export const MessageItem: FC<Props> = (props) => {
             </svg>
         }
       </span>
-      <span className={clsx(
-        s.message,
-        s?.[`message__${author}`],
-      )}>
-        {text}
+      <span className={clsx(s.message, s?.[`message__${author}`])}>
+        {animatedText}
       </span>
     </div>
   );

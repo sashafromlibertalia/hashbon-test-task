@@ -1,12 +1,38 @@
 import { ApiMessageChunk } from "~/shared";
 
+let memoizedSplitChunk: string = "";
+
 const processJsonStringAsArray = (data: string): ApiMessageChunk[] => {
   try {
-    const processedData = data.replaceAll("}{", "},{");
+    const rawData = data.split("}{");
 
-    return JSON.parse(`[${processedData}]`);
+    const processedData = rawData.map((chunk, index) => {
+      if (rawData.length - 1 === index) {
+        if (chunk.endsWith("}") && !chunk.startsWith("{")) {
+          return `{${chunk}`;
+        }
+
+        memoizedSplitChunk = chunk;
+        return "{}";
+      }
+
+      if (!chunk.startsWith("{") && index === 0) {
+        return `${memoizedSplitChunk.startsWith("{") ? "" : "{"}${memoizedSplitChunk + chunk}}`;
+      }
+
+      if (!chunk.startsWith("{") && !chunk.startsWith("}")) {
+        return `{${chunk}}`;
+      }
+
+      if (!chunk.endsWith("}")) {
+        return `${chunk}}`;
+      }
+
+      return chunk;
+    });
+
+    return processedData.map(i => JSON.parse(i)).flat();
   } catch (e) {
-    // Данный блок будет отрабатывать тогда, когда в чанке придет некорректный JSON
     console.error(e);
 
     return [{

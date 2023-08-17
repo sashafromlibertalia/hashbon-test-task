@@ -1,5 +1,5 @@
 import s from "./TextInput.module.scss";
-import { ChangeEvent, FC, TextareaHTMLAttributes, useCallback, useState } from "react";
+import { ChangeEvent, FC, TextareaHTMLAttributes, useCallback, useRef, useState } from "react";
 import { clsx } from "clsx";
 
 type Props = {
@@ -13,12 +13,16 @@ export const TextInput: FC<Props> = (props) => {
     onSend,
     ...rest
   } = props;
-
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [userMessage, setUserMessage] = useState("");
 
   const onMessageSubmit = useCallback(() => {
     onSend?.(userMessage);
-  }, [userMessage]);
+    if (textareaRef.current) {
+      textareaRef.current.value = "";
+      textareaRef.current.style.height = "auto";
+    }
+  }, [userMessage, textareaRef.current]);
 
   const handleResizeOnInput = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
     event.target.style.height = "auto";
@@ -39,6 +43,7 @@ export const TextInput: FC<Props> = (props) => {
         aria-placeholder={placeholder}
         className={clsx(s.input, className)}
         placeholder={placeholder}
+        ref={textareaRef}
         role="textbox"
         rows={1}
         onChange={(e) => setUserMessage(e.target.value)}
