@@ -1,17 +1,12 @@
 import { TextInput } from "~/features/send-message";
 import { MessageItem, MessageItemData, sendMessageRequest } from "~/entities/message";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { processJsonStringAsArray, SendMessageDto } from "~/shared";
 import { nanoid } from "nanoid";
 
 import s from "./Chat.module.scss";
-import { clsx } from "clsx";
 
-type Props = {
-  className?: string;
-}
-
-export const ChatWidget: FC<Props> = ({ className }) => {
+export const ChatWidget = () => {
   const [data, setData] = useState<MessageItemData[]>([]);
   const chatContainer = useRef<HTMLDivElement | null>(null);
 
@@ -61,7 +56,7 @@ export const ChatWidget: FC<Props> = ({ className }) => {
   }, [data]);
 
   return (
-    <div className={clsx(s.chat, className)}>
+    <div className={s.chat}>
       <div className={s.chat__container} ref={chatContainer}>
         {
           data.length === 0 && <p className={s.chat__caption}>Начните беседу с ботом</p>

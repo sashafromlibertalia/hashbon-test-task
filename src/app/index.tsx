@@ -5,7 +5,9 @@ import s from "../pages/root/RootPage.module.scss";
 const App = () => {
   return (
     <main className={s.page}>
-      <ChatWidget className={s.preview} />
+      <div className={s.preview}>
+        <ChatWidget />
+      </div>
     </main>
   );
 };
