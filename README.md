@@ -15,6 +15,9 @@
 git clone https://github.com/sashafromlibertalia/hashbon-test-task.git
 ```
 
+### Настройка окружения
+Cоздайте `.env` файл в корне проекта и добавьте туда переменные из [.env.dist](./.env.dist) со значениями
+
 ### Установка зависимостей
 ```shell
 yarn install
